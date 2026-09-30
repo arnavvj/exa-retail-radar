@@ -20,12 +20,13 @@ Retailer ← direct supplier ← distributor / importer ← manufacturer ← par
   - Both react late.
 - **With Exa:** a risk level and signals for each supply-chain layer. Each signal is tagged as *direct evidence* or *inference* and cited.
 - The **latency gap** line puts the two views side by side.
+- **Evidence order:** sources the risk card cites come first, newest first. The Snapshot replay drops anything dated on or after the cutoff.
 
 ## Exa calls
 
 | Step | Call | Key settings |
 |---|---|---|
-| Scan / Investigate | `exa.search` | `system_prompt` and `output_schema` (risk level, price change, signals by layer). One call per supplier, run in parallel. |
+| Scan / Investigate | `exa.search` | `start_published_date` (last 12 months), `system_prompt` (rank by recency and severity) and `output_schema` (risk level, price change, signals by layer). One call per supplier, run in parallel. |
 | Validate | `exa.search` | `contents.snapshot_as_of`: each page as it was stored on the cutoff date |
 | Published since | `exa.search` | `start_published_date`: news published after the cutoff |
 | Discover | `exa.search` | `category="company"`, `output_schema`, type selectable (default `deep`) |
