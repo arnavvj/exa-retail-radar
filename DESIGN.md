@@ -1,38 +1,81 @@
-# Supplier Risk & Discovery Radar — Design
+# Design
 
-**Positioning:** external supply-chain intelligence for retail sourcing agents.
-**Persona:** strategic sourcing lead at a large North American retailer.
-**Question:** which of our suppliers is becoming a risk, what is happening upstream, and who could we source from instead?
+**Idea:** Exa turns the public web into structured facts with citations. The app chains those facts into one sourcing workflow: detect the risk, confirm it, find alternatives, vet them, decide and keep watching.
 
-## Entity model
+## Who is who
 
-Retailer → direct (tier-1) supplier → distributor / wholesaler / importer → manufacturer → upstream components and materials.
-One company can hold several roles. The retailer's decision is always about the **direct supplier relationship**; risks can originate at any layer.
-`data/suppliers.json` records each direct supplier's relationship (e.g. "Manufacturer · direct supplier", "Distributor · direct supplier") and known upstream dependencies.
+```
+Retailer ← direct supplier ← distributor / importer ← manufacturer ← parts and raw materials
+```
 
-## Workflow → Exa
+- One company can play several roles. For example, Whirlpool both manufactures its products and sells them to us directly.
+- The retailer's decision is always about the **direct supplier**, but a risk can start at any layer.
+- A supplier is not the same as a brand. Whirlpool supplies KitchenAid and Maytag. Another company that carries the same brands still counts as an alternative supplier. The app excludes only the companies already on our watchlist.
 
-| Step | Exa capability | Notes |
+## Without Exa vs with Exa
+
+- **Without Exa (the current stack):**
+  - Internal KPI rules: on-time delivery ≥ 95%, fill rate ≥ 96%, cost change ≤ 1%.
+  - A third-party rating that refreshes monthly.
+  - Both react late.
+- **With Exa:** a risk level and signals for each supply-chain layer. Each signal is tagged as *direct evidence* or *inference* and cited.
+- The **latency gap** line puts the two views side by side.
+
+## Exa calls
+
+| Step | Call | Key settings |
 |---|---|---|
-| Watchlist sweep + investigate | Search, `system_prompt`, `output_schema` (risk + signals by layer, direct evidence vs inference), grounding | One search per supplier; the same result powers the drill-in |
-| Validate | Snapshot (`contents.snapshot_as_of`) | Auto only, no category, 5-month window, 100 trial requests; shows the latency gap vs the 3P feed |
-| Impact | derived | Synthetic spend × grounded price change (ignores values beyond ±50%) |
-| Alternative suppliers | Search `type="deep"`, `category="company"` | Roles: Manufacturer / Distributor / Wholesaler / Importer / Vertically Integrated / Other, grounded in evidence; default shortlist is role-diverse |
-| Vet | Agent (`input.data`, `output_schema`, `effort`) + Contents highlights | Direct-supplier assessment: demonstrated vs inferred vs needs supplier validation |
-| Decide | internal workflow | Final question + candidate table; orange buttons never execute procurement actions |
-| Watch | Monitors | Webhook required at create; runs read back by polling |
+| Scan / Investigate | `exa.search` | `system_prompt` and `output_schema` (risk level, price change, signals by layer). One call per supplier, run in parallel. |
+| Validate | `exa.search` | `contents.snapshot_as_of`: each page as it was stored on the cutoff date |
+| Published since | `exa.search` | `start_published_date`: news published after the cutoff |
+| Discover | `exa.search` | `category="company"`, `output_schema`, type selectable (default `deep`) |
+| Vet | `exa.agent.runs.create` | `input.data` (the chosen companies), `output_schema`, `effort`. The app polls until the run finishes. |
+| Evidence excerpts | `exa.get_contents` | `highlights` with a query, for each candidate |
+| Copilot | `exa.openai.web_search` | Exa as an OpenAI tool. The model picks its own searches, at most 4 per question. |
+| Watch | `exa.monitors.create`, then `trigger` | Runs daily and posts to a webhook. The inbox checks the `Exa-Signature` (HMAC-SHA256). |
 
-"Without Exa" = the current stack: rule-based internal KPI status (on-time ≥ 95%, fill ≥ 96%, cost Δ ≤ 1%) plus a simulated quarterly 3P risk rating with refresh dates. All synthetic and labeled.
+## Guardrails
+
+- **Never invent facts:**
+  - The schemas allow null.
+  - The prompts ask for sources.
+  - Anything unproven is labeled as inference, or as "validate with the supplier".
+- **Copilot:**
+  - It answers sourcing questions only.
+  - It treats search results as untrusted and cites URLs.
+  - Questions are capped at 500 characters, and at 15 per session.
+- **No automatic actions:** decision buttons only hand the case off to a team. They never buy or change anything.
+- **Access:** a login is required, and keys live only in `.env` or the Streamlit Secrets.
+
+## Caching
+
+- Each request and its response are saved as JSON in `cache/<call type>/`, named by a hash of the request.
+- The same request returns the cached result for free, with a CACHED label.
+- If a live call fails, the app falls back to the cache.
+- The app counts Snapshot calls against the 100-request trial.
 
 ## Files
 
 ```
-app.py          Streamlit page, progressive reveal; sidebar = scenario, supplier, date, live toggle, agent trace
-agent.py        orchestrator: queries, system prompts, schemas, shortlist logic
-exa_client.py   every Exa call: search, contents, agent runs, monitors; caching + request capture
-internal.py     synthetic current stack: KPI rules, quarterly 3P feed
-ui.py           rendering: ↗ call popovers, inline citations, tables, cards
-impact.py       exposure math
-cache.py        JSON cache
-data/           suppliers.json (24 suppliers, 6 categories), scenarios.json (7 scenarios)
+app.py          the page, top to bottom in workflow order
+agent.py        prompts, schemas, supplier data, candidate shortlist
+exa_client.py   every Exa call, plus the cache
+copilot.py      OpenAI model with Exa as its search tool
+inbox.py        webhook.site endpoint, signature check
+auth.py         login
+ui.py           cards, tables, citations, ↗ API-call popovers
+internal.py     synthetic KPI rules and third-party feed
+impact.py       spend × price change
+cache.py        JSON cache on disk
+data/           suppliers.json (24 suppliers, 6 categories), scenarios.json (7)
 ```
+
+## Limits
+
+- **Snapshot:**
+  - It covers the last 5 months only, with 100 trial requests.
+  - It fixes page *content* at the cutoff date, not search *ranking*.
+  - It is a research preview.
+- **Company search:** it doesn't accept date filters or domain exclusions.
+- **Agent vetting:** it takes about 1–2 minutes.
+- **Webhook:** free webhook.site URLs expire. A real deployment would use the retailer's own endpoint.
