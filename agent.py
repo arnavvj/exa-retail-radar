@@ -2,6 +2,7 @@ import json
 import os
 import re
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date, timedelta
 from pathlib import Path
 
 import exa_client as ex
@@ -14,6 +15,11 @@ SOURCE_RULES = (
     "Prefer primary company sources, SEC filings and reputable industry/news sources. "
     "Avoid duplicate reporting of the same event. Do not state unverified allegations as facts. "
     "If a field cannot be verified from the sources, return null rather than guessing."
+)
+RECENCY = (
+    " Today is {today}. Rank signals by recency and severity: prefer events from the last 12 months. Include an "
+    "older event only if it is severe and still affects cost, supply or continuity, and say that it is older. "
+    "List the most severe signal first and start each signal with its date, written like 'Jul 2026 · '."
 )
 
 LAYERS = ["Direct supplier", "Manufacturer", "Distributor / logistics", "Upstream component / material",
@@ -79,23 +85,25 @@ def risk_query(supplier, product, focus):
     return f"{supplier} and its supply chain: {focus} affecting {product}"
 
 
-def risk_rules(supplier, product):
+def risk_rules(supplier, product, today=None):
     p = supplier_profile(supplier)
     return (f"We are a large North American retailer. {supplier} is our {p['relationship']} of {product}; "
             f"known upstream dependencies: {', '.join(p['upstream'])}. Look for signals at every supply-chain "
             "layer: the direct supplier, manufacturers, distributors and logistics, upstream components and "
             "materials, and industry-wide shifts. Prioritize what could affect product cost, availability, "
             "lead time, capacity or continuity of supply. Label each signal as direct evidence or inference. "
-            + SOURCE_RULES)
+            + SOURCE_RULES + (RECENCY.format(today=today) if today else ""))
 
 
-def risk_search(supplier, product, focus, live, **kwargs):
-    return ex.search(risk_query(supplier, product, focus), system_prompt=risk_rules(supplier, product), live=live,
-                     **kwargs)
+def risk_search(supplier, product, focus, live, today=None, **kwargs):
+    return ex.search(risk_query(supplier, product, focus), system_prompt=risk_rules(supplier, product, today),
+                     live=live, **kwargs)
 
 
 def investigate(supplier, product, focus, live=False):
-    return risk_search(supplier, product, focus, live, output_schema=RISK_SCHEMA)
+    today = date.today()
+    return risk_search(supplier, product, focus, live, today=today, output_schema=RISK_SCHEMA,
+                       start_published_date=f"{today - timedelta(days=365)}T00:00:00Z")
 
 
 def sweep(suppliers, focus, live=False):
@@ -113,9 +121,16 @@ def since(supplier, product, focus, as_of, live=False):
     return risk_search(supplier, product, focus, live, start_published_date=f"{as_of}T00:00:00Z")
 
 
+def rank_evidence(results, output, cutoff=None):
+    cited = {c["url"] for g in (output or {}).get("grounding", []) for c in g["citations"]}
+    kept = [r for r in results if not (cutoff and r["date"] and r["date"] >= str(cutoff))]
+    newest = sorted(kept, key=lambda r: r["date"], reverse=True)
+    return sorted(newest, key=lambda r: (r["url"] not in cited, not r["date"]))
+
+
 def newer_results(since_res, inv, as_of):
     fresh = ((since_res or {}).get("data") or {}).get("results", [])
-    older = [r for r in ((inv or {}).get("data") or {}).get("results", []) if r["date"] > str(as_of)]
+    older = [r for r in ((inv or {}).get("data") or {}).get("results", []) if r["date"] >= str(as_of)]
     merged = {r["url"]: r for r in fresh + older}
     return sorted(merged.values(), key=lambda r: r["date"], reverse=True)
 

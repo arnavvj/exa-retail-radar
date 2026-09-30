@@ -19,7 +19,7 @@ Nobody has time to read the whole web.
 
 | Step | What the user sees | Exa feature |
 |---|---|---|
-| 1. Scan | Every supplier on the watchlist checked against the public web | Search, with structured output and citations |
+| 1. Scan | Every supplier on the watchlist checked against the last 12 months of public web news, most recent and most severe first | Search, with structured output and citations |
 | 2. Investigate | One supplier's risks, split by supply-chain layer (the supplier, factories, logistics, raw materials) | the same Search result |
 | 3. Validate | The web replayed as of a past date ("could we have known?"), plus what has been published since | Snapshot, then Search filtered by date |
 | 4. Discover | Companies that could supply us instead | Search with `category="company"` |

@@ -114,7 +114,8 @@ if inv:
                note=f"One Exa Search per supplier, run in parallel ({len(suppliers)} calls). Showing {supplier}'s call.",
                controls=lambda: st.selectbox("Direct supplier", [s["name"] for s in suppliers], key="supplier",
                                              width=200))
-    refs = ui.ref_numbers(((inv.get("data") or {}).get("results")) or [])
+    results = agent.rank_evidence(inv["data"]["results"], inv["data"]["output"]) if inv.get("data") else []
+    refs = ui.ref_numbers(results)
     left, right = st.columns([1, 2], border=True)
     with left:
         ui.current_stack(profile, today)
@@ -124,7 +125,7 @@ if inv:
         if inv.get("data"):
             ui.risk_card(inv["data"]["output"], refs)
     if inv.get("data"):
-        feed, results = internal.third_party_feed(profile, today), inv["data"]["results"]
+        feed = internal.third_party_feed(profile, today)
         newest = max((r["date"] for r in results if r["date"]), default="n/a")
         st.info(f"**The latency gap:** the 3P feed still rates {supplier} **{feed['rating']}** (monthly refresh, last "
                 f"{feed['last']:%b %d}). Exa rates it **{content(inv).get('risk_level', 'n/a')}** today from "
@@ -155,13 +156,14 @@ if inv and inv.get("data"):
         ui.badge(snap)
     if snap and snap.get("data"):
         log(f"Validated the signal as of {as_of} (Exa Snapshot)")
-        srefs = ui.ref_numbers(snap["data"]["results"])
+        sresults = agent.rank_evidence(snap["data"]["results"], snap["data"]["output"], as_of)
+        srefs = ui.ref_numbers(sresults)
         st.markdown(f":violet-badge[POINT-IN-TIME WEB REPLAY · {as_of:%b %d, %Y}]")
         ui.risk_card(snap["data"]["output"], srefs)
         a, b = st.columns(2, border=True)
         with a:
             st.markdown(f"**Evidence available on {as_of:%b %d}**")
-            ui.evidence(snap["data"]["results"], srefs)
+            ui.evidence(sresults, srefs)
         with b:
             newer = agent.newer_results(snap.get("since"), inv, as_of)
             st.markdown(f"**Published since {as_of:%b %d} · live Exa Search** :green-badge[NOT IN THE REPLAY]")
