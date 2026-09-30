@@ -11,6 +11,7 @@ from exa_py.api import to_camel_case
 import cache
 
 load_dotenv()
+TTL = 6 * 3600
 
 
 @lru_cache
@@ -27,7 +28,7 @@ def now():
 
 
 def cached_call(op, request, fn, live):
-    hit = None if live else cache.get(op, request)
+    hit = None if live else cache.get(op, request, TTL)
     if hit:
         return {**hit, "source": "cached"}
     start = time.time()
@@ -105,7 +106,7 @@ def _output(o):
 
 
 def agent_cached(request):
-    hit = cache.get("agent", request)
+    hit = cache.get("agent", request, TTL)
     return {**hit, "source": "cached"} if hit else None
 
 
