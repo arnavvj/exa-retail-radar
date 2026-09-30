@@ -14,7 +14,3 @@ def third_party_feed(s, today):
     last = today.replace(day=1) if today.day != 1 else (today - timedelta(days=1)).replace(day=1)
     nxt = (last + timedelta(days=32)).replace(day=1)
     return {"rating": s["third_party_rating"], "last": last, "next": nxt, "age_days": (today - last).days}
-
-
-def newer_than(results, since):
-    return sorted((r for r in results if r["date"] > str(since)), key=lambda r: r["date"])
