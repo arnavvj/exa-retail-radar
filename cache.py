@@ -1,5 +1,6 @@
 import hashlib
 import json
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).parent / "cache"
@@ -10,9 +11,11 @@ def _path(op, key):
     return ROOT / op / f"{digest}.json"
 
 
-def get(op, key):
+def get(op, key, max_age=None):
     p = _path(op, key)
-    return json.loads(p.read_text()) if p.exists() else None
+    if not p.exists() or (max_age and time.time() - p.stat().st_mtime > max_age):
+        return None
+    return json.loads(p.read_text())
 
 
 def put(op, key, value):
