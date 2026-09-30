@@ -1,4 +1,3 @@
-import os
 import time
 from datetime import date, timedelta
 
@@ -91,15 +90,19 @@ if ss.pop("scan", False):
     with st.spinner("Searching the public web across each supplier's supply chain…"):
         ss.sweeps[(scenario["name"], ss.category)] = agent.sweep(suppliers, focus, live)
     st.rerun()
-st.dataframe(pd.DataFrame([{
-    "Supplier": s["name"], "Relationship": s["relationship"], "Brands": ", ".join(s["brands"]), "SKUs": s["sku_count"],
-    "Internal KPI status": internal.kpi_status(s)[0],
-    "3P rating": f"{s['third_party_rating']} (as of {internal.third_party_feed(s, today)['last']:%b %d})",
-    "External risk (Exa)": content(sweep.get(s["name"])).get("risk_level", "—"),
-    "Risk origin (Exa)": ui.origins(content(sweep.get(s["name"]))),
-    "External signal (Exa)": content(sweep.get(s["name"])).get("primary_signal", "Not scanned"),
-    "Annual spend": impact.money(s["annual_spend"]),
-} for s in suppliers]), hide_index=True, height=180,
+
+
+def watch_row(s):
+    c = content(sweep.get(s["name"]))
+    return {"Supplier": s["name"], "Relationship": s["relationship"], "Brands": ", ".join(s["brands"]),
+            "SKUs": s["sku_count"], "Internal KPI status": internal.kpi_status(s)[0],
+            "3P rating": f"{s['third_party_rating']} (as of {internal.third_party_feed(s, today)['last']:%b %d})",
+            "External risk (Exa)": c.get("risk_level", "—"), "Risk origin (Exa)": ui.origins(c),
+            "External signal (Exa)": c.get("primary_signal", "Not scanned"),
+            "Annual spend": impact.money(s["annual_spend"])}
+
+
+st.dataframe(pd.DataFrame([watch_row(s) for s in suppliers]), hide_index=True, height=180,
     column_config={"External signal (Exa)": st.column_config.TextColumn(width=900),
                    "Risk origin (Exa)": st.column_config.TextColumn(width=320)})
 st.caption(":gray-badge[SYNTHETIC] internal KPIs and 3P ratings are demo data · Exa columns come from Exa Search")
@@ -126,8 +129,8 @@ if inv:
         st.info(f"**The latency gap:** the 3P feed still rates {supplier} **{feed['rating']}** (monthly refresh, last "
                 f"{feed['last']:%b %d}). Exa rates it **{content(inv).get('risk_level', 'n/a')}** today from "
                 f"{len(results)} public sources, the newest published {newest}.")
-        with st.expander(f"Evidence · {len(inv['data']['results'])} sources"):
-            ui.evidence(inv["data"]["results"], refs)
+        with st.expander(f"Evidence · {len(results)} sources"):
+            ui.evidence(results, refs)
 
 snap_key = (supplier, str(ss.as_of))
 snap = ss.setdefault("snaps", {}).get(snap_key)
@@ -192,7 +195,7 @@ if inv and inv.get("data"):
                 "grounded in public evidence.")
     if ss.pop("discover", False):
         with st.spinner(f"Exa company search (type={ss.search_type})…"):
-            ss.disc = agent.discover(supplier, product, ss.category, ss.search_type, live)
+            ss.disc = agent.discover(product, ss.category, ss.search_type, live)
         st.rerun()
     if disc:
         ui.badge(disc)
@@ -267,20 +270,12 @@ if shown:
         st.caption("Set OPENAI_API_KEY to enable the copilot.")
     used = ss.get("copilot_count", 0)
     if asked:
-        question, problem = copilot.check(question)
-        if not problem and used >= copilot.MAX_PER_SESSION:
-            problem = f"Question limit for this session reached ({copilot.MAX_PER_SESSION})."
+        question, problem = copilot.check(question, used)
         if problem:
             st.warning(problem)
     if asked and not problem:
-        context = "\n".join([f"Direct supplier: {supplier} ({profile['relationship']}) of {product}.",
-                              f"Items we buy from {supplier}: {'; '.join(profile['top_items'])} "
-                              f"({profile['sku_count']} SKUs in total).",
-                              "Current suppliers and their brands: " + "; ".join(
-                                  f"{s['name']} ({', '.join(s['brands'])})" for s in suppliers) + ".",
-                              f"External risk signal: {content(inv).get('primary_signal', 'n/a')}"] +
-                             [f"Vetted candidate: {v['cand']['company_name']} ({v['cand']['supply_chain_role']}); "
-                              f"to validate: {'; '.join(v['cand']['needs_supplier_validation'])}" for v in shown])
+        context = copilot.context(profile, suppliers, content(inv).get("primary_signal", "n/a"),
+                                  [v["cand"] for v in shown])
         with st.spinner("Your model is thinking and searching with Exa…"):
             ss.copilot_answer = copilot.ask(question, context, live)
         ss.copilot_count = used + 1
@@ -330,7 +325,7 @@ if shown and ss.get("decision") == "Keep Watching":
         st.markdown("**Webhook inbox** · what Exa POSTed to our endpoint, with the `Exa-Signature` checked "
                     "against the monitor's signing secret")
         if st.button("↻ Refresh inbox", type="primary"):
-            ss.inbox = [d for d in inbox.deliveries(url) if d["body"].get("data", {}).get("monitorId") == mon["id"]]
+            ss.inbox = inbox.deliveries(url, mon["id"])
         for d in ss.get("inbox", []):
             ok = inbox.verify(d["raw"], d["signature"], mon.get("secret") or "")
             data = d["body"].get("data", {})
