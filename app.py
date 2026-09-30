@@ -314,7 +314,7 @@ if shown and ss.get("decision") == "Keep Watching":
     webhook, query = inbox.endpoint(), agent.risk_query(supplier, product, focus)
     mon = ex.saved_monitor(supplier)
     ui.section("Keep watching", mon or {"request": ex.monitor_request(supplier, query, webhook)})
-    if not webhook and st.button("Create demo webhook endpoint (webhook.site)", type="primary"):
+    if not webhook and st.button("Create demo webhook endpoint (Svix Play)", type="primary"):
         inbox.create_endpoint()
         st.rerun()
     if not mon and webhook and st.button(f"Start daily Exa Monitor for {supplier}", type="primary"):

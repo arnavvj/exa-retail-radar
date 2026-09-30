@@ -62,7 +62,7 @@ app.py          the page, top to bottom in workflow order
 agent.py        prompts, schemas, supplier data, candidate shortlist
 exa_client.py   every Exa call, plus the cache
 copilot.py      OpenAI model with Exa as its search tool
-inbox.py        webhook.site endpoint, signature check
+inbox.py        Svix Play endpoint, signature check
 auth.py         login
 ui.py           cards, tables, citations, ↗ API-call popovers
 internal.py     synthetic KPI rules and third-party feed
@@ -79,4 +79,4 @@ data/           suppliers.json (24 suppliers, 6 categories), scenarios.json (7)
   - It is a research preview.
 - **Company search:** it doesn't accept date filters or domain exclusions.
 - **Agent vetting:** it takes about 1–2 minutes.
-- **Webhook:** free webhook.site URLs expire. A real deployment would use the retailer's own endpoint.
+- **Webhook:** Svix Play is a free test inbox that stands in for the retailer's own endpoint in a real deployment.
