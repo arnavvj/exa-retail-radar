@@ -20,11 +20,11 @@ def create_endpoint():
     return f"{API}/{token}"
 
 
-def deliveries(url):
+def deliveries(url, monitor_id):
     token = url.rstrip("/").split("/")[-1]
     r = requests.get(f"{API}/token/{token}/requests", params={"sorting": "newest"},
                      headers={"Accept": "application/json"}, timeout=10)
-    return [_delivery(d) for d in r.json()["data"]]
+    return [d for d in map(_delivery, r.json()["data"]) if d["body"].get("data", {}).get("monitorId") == monitor_id]
 
 
 def _delivery(d):
