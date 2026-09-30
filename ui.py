@@ -40,7 +40,8 @@ def python_snippet(req):
     p = dict(req["python"])
     first, value = next(iter(p.items()))
     p.pop(first)
-    lead = repr(value) if req["call"] in ("exa.search", "exa.get_contents", "exa.monitors.create") else f"{first}={value!r}"
+    positional = req["call"] in ("exa.search", "exa.get_contents", "exa.monitors.create")
+    lead = repr(value) if positional else f"{first}={value!r}"
     args = [lead] + [f"{k}={pformat(v, width=76, sort_dicts=False)}" for k, v in p.items()]
     return f"{req['call']}(\n" + "".join(indent(a, "    ") + ",\n" for a in args) + ")"
 
@@ -144,7 +145,8 @@ def evidence(results, refs=None, limit=8, new=False):
 
 
 def candidates_table(cands, key, default):
-    rows = [{"Vet": c["company_name"] in default, "Company": c["company_name"], "Supply-chain role": c["supply_chain_role"], "Brands carried": c.get("brands_carried", ""),
+    rows = [{"Vet": c["company_name"] in default, "Company": c["company_name"],
+             "Supply-chain role": c["supply_chain_role"], "Brands carried": c.get("brands_carried", ""),
              "Product fit": c["product_capability"], "Geography": c["geography"],
              "Retailer-serving capability": c["retailer_serving_capability"], "Why it fits": c["fit_reason"],
              "Founded": (c["facts"] or {}).get("founded"), "Employees": (c["facts"] or {}).get("employees"),
@@ -173,7 +175,8 @@ def vet_card(col, c, grounding, p, highlights):
         st.markdown(f"#### {clean(c['company_name'])}\n:blue-badge[{c['supply_chain_role']}]")
         for label, field in VET_LINES:
             if c.get(field):
-                st.markdown(f"**{label}:** {clean(c[field])}{sup(grounding, f'{p}.{field}', refs)}", unsafe_allow_html=True)
+                st.markdown(f"**{label}:** {clean(c[field])}{sup(grounding, f'{p}.{field}', refs)}",
+                            unsafe_allow_html=True)
         for label, field in VET_LISTS:
             if c.get(field):
                 st.markdown(f"**{label}**{sup(grounding, f'{p}.{field}', refs)}\n" +

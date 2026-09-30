@@ -1,7 +1,6 @@
 import json
 import os
 
-from exa_py.api import to_camel_case
 from openai import OpenAI
 
 import exa_client as ex
@@ -22,13 +21,27 @@ def has_key():
     return bool(os.getenv("OPENAI_API_KEY"))
 
 
-def check(question):
+def check(question, used):
     q = " ".join((question or "").split())
     if not q:
         return None, "Type a question first."
     if len(q) > MAX_QUESTION:
         return None, f"Keep the question under {MAX_QUESTION} characters."
+    if used >= MAX_PER_SESSION:
+        return q, f"Question limit for this session reached ({MAX_PER_SESSION})."
     return q, None
+
+
+def context(profile, suppliers, signal, candidates):
+    name = profile["name"]
+    return "\n".join([f"Direct supplier: {name} ({profile['relationship']}) of {profile['product']}.",
+                      f"Items we buy from {name}: {'; '.join(profile['top_items'])} "
+                      f"({profile['sku_count']} SKUs in total).",
+                      "Current suppliers and their brands: " + "; ".join(
+                          f"{s['name']} ({', '.join(s['brands'])})" for s in suppliers) + ".",
+                      f"External risk signal: {signal}"] +
+                     [f"Vetted candidate: {c['company_name']} ({c['supply_chain_role']}); "
+                      f"to validate: {'; '.join(c['needs_supplier_validation'])}" for c in candidates])
 
 
 class Code(str):
@@ -52,9 +65,7 @@ def openai_request(question, context):
 
 
 def search_request(query):
-    python = {"query": query, **SEARCH}
-    return {"call": "exa.search", "python": python,
-            "rest": {"endpoint": "POST https://api.exa.ai/search", "body": to_camel_case(python)}}
+    return ex.request("exa.search", "search", {"query": query, **SEARCH})
 
 
 def run_search(tool, call):
