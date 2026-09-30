@@ -3,200 +3,249 @@
   "category": "Home Appliances",
   "name": "Whirlpool",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "stainless steel",
-   "electronic controls",
-   "pumps and motors"
-  ],
   "brands": [
    "Whirlpool",
    "KitchenAid",
    "Maytag"
+  ],
+  "upstream": [
+   "stainless steel",
+   "electronic controls",
+   "pumps and motors"
   ],
   "product": "premium dishwashers",
   "annual_spend": 42000000,
   "on_time_delivery": 96.2,
   "fill_rate": 98.1,
   "internal_cost_delta": 0.4,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 14,
+  "top_items": [
+   "W-1001 \u00b7 KitchenAid 24-in panel-ready built-in dishwasher",
+   "W-1002 \u00b7 KitchenAid 24-in stainless dishwasher, third rack",
+   "W-1003 \u00b7 Maytag 24-in top-control dishwasher"
+  ]
  },
  {
   "category": "Home Appliances",
   "name": "GE Appliances",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "Haier (parent company)",
-   "stainless steel",
-   "electronic controls"
-  ],
   "brands": [
    "GE",
    "Haier",
    "Caf\u00e9",
    "Monogram"
   ],
+  "upstream": [
+   "Haier (parent company)",
+   "stainless steel",
+   "electronic controls"
+  ],
   "product": "premium dishwashers",
   "annual_spend": 31000000,
   "on_time_delivery": 94.8,
   "fill_rate": 97.4,
   "internal_cost_delta": 0.2,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 11,
+  "top_items": [
+   "GA-1001 \u00b7 Caf\u00e9 24-in stainless dishwasher, WiFi",
+   "GA-1002 \u00b7 Monogram 24-in panel-ready dishwasher",
+   "GA-1003 \u00b7 GE Profile 24-in quiet dishwasher"
+  ]
  },
  {
   "category": "Home Appliances",
   "name": "LG",
   "relationship": "Manufacturer \u00b7 direct supplier",
+  "brands": [
+   "LG"
+  ],
   "upstream": [
    "overseas assembly plants",
    "semiconductors",
    "stainless steel"
-  ],
-  "brands": [
-   "LG"
   ],
   "product": "premium dishwashers",
   "annual_spend": 24000000,
   "on_time_delivery": 95.5,
   "fill_rate": 96.9,
   "internal_cost_delta": 0.6,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 8,
+  "top_items": [
+   "L-1001 \u00b7 LG 24-in QuadWash stainless dishwasher",
+   "L-1002 \u00b7 LG STUDIO 24-in top-control dishwasher"
+  ]
  },
  {
   "category": "Home Appliances",
   "name": "Bosch",
   "relationship": "Manufacturer \u00b7 direct supplier",
+  "brands": [
+   "Bosch",
+   "Thermador",
+   "Gaggenau"
+  ],
   "upstream": [
    "BSH Home Appliances plants",
    "stainless steel",
    "electronic controls"
-  ],
-  "brands": [
-   "Bosch",
-   "BSH",
-   "Thermador",
-   "Gaggenau"
   ],
   "product": "premium dishwashers",
   "annual_spend": 18000000,
   "on_time_delivery": 97.1,
   "fill_rate": 98.6,
   "internal_cost_delta": 0.3,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 9,
+  "top_items": [
+   "B-1001 \u00b7 Bosch 800 Series 24-in dishwasher",
+   "B-1002 \u00b7 Bosch Benchmark 24-in panel-ready dishwasher",
+   "B-1003 \u00b7 Thermador Star Sapphire 24-in dishwasher"
+  ]
  },
  {
   "category": "Consumer Electronics",
   "name": "Dell",
   "relationship": "Manufacturer \u00b7 direct supplier",
+  "brands": [
+   "Dell",
+   "Alienware"
+  ],
   "upstream": [
    "DRAM and NAND memory",
    "CPUs",
    "contract assemblers in Asia"
-  ],
-  "brands": [
-   "Dell",
-   "Alienware"
   ],
   "product": "laptops",
   "annual_spend": 64000000,
   "on_time_delivery": 95.9,
   "fill_rate": 97.2,
   "internal_cost_delta": 1.1,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 22,
+  "top_items": [
+   "D-1001 \u00b7 Dell 14-in business laptop, 16GB/512GB",
+   "D-1002 \u00b7 Dell 16-in consumer laptop, 16GB/1TB",
+   "D-1003 \u00b7 Alienware 16-in gaming laptop"
+  ]
  },
  {
   "category": "Consumer Electronics",
   "name": "HP",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "DRAM and NAND memory",
-   "CPUs",
-   "contract assemblers in Asia"
-  ],
   "brands": [
    "HP",
    "OMEN",
    "HyperX"
+  ],
+  "upstream": [
+   "DRAM and NAND memory",
+   "CPUs",
+   "contract assemblers in Asia"
   ],
   "product": "laptops",
   "annual_spend": 71000000,
   "on_time_delivery": 96.4,
   "fill_rate": 97.8,
   "internal_cost_delta": 0.9,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 25,
+  "top_items": [
+   "H-1001 \u00b7 HP 14-in everyday laptop, 8GB/256GB",
+   "H-1002 \u00b7 HP 15-in laptop, 16GB/512GB",
+   "H-1003 \u00b7 OMEN 16-in gaming laptop"
+  ]
  },
  {
   "category": "Consumer Electronics",
   "name": "Lenovo",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "DRAM and NAND memory",
-   "CPUs",
-   "own and contract factories"
-  ],
   "brands": [
    "Lenovo",
    "ThinkPad",
    "Legion",
    "Motorola"
   ],
+  "upstream": [
+   "DRAM and NAND memory",
+   "CPUs",
+   "own and contract factories"
+  ],
   "product": "laptops",
   "annual_spend": 58000000,
   "on_time_delivery": 94.1,
   "fill_rate": 96.5,
   "internal_cost_delta": 1.3,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 19,
+  "top_items": [
+   "L-1001 \u00b7 Lenovo IdeaPad 15-in laptop, 16GB/512GB",
+   "L-1002 \u00b7 ThinkPad 14-in business laptop",
+   "L-1003 \u00b7 Legion 16-in gaming laptop"
+  ]
  },
  {
   "category": "Consumer Electronics",
   "name": "TD SYNNEX",
   "relationship": "Distributor \u00b7 direct supplier",
+  "brands": [
+   "HP",
+   "Lenovo",
+   "Acer",
+   "ASUS"
+  ],
   "upstream": [
    "laptop manufacturers (HP, Lenovo, Acer, ASUS)",
    "DRAM and NAND memory"
-  ],
-  "brands": [
-   "TD SYNNEX"
   ],
   "product": "laptops",
   "annual_spend": 39000000,
   "on_time_delivery": 97.4,
   "fill_rate": 97.9,
   "internal_cost_delta": 0.7,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 31,
+  "top_items": [
+   "TS-1001 \u00b7 Acer 15-in value laptop (distributed)",
+   "TS-1002 \u00b7 ASUS 14-in thin-and-light laptop (distributed)",
+   "TS-1003 \u00b7 HP 14-in Chromebook (distributed)"
+  ]
  },
  {
   "category": "Personal Care & Household",
   "name": "Kimberly-Clark",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "pulp and nonwovens",
-   "petroleum-based materials"
-  ],
   "brands": [
-   "Kimberly-Clark",
    "Huggies",
    "Kleenex",
    "Cottonelle",
    "Scott",
    "Kotex"
   ],
+  "upstream": [
+   "pulp and nonwovens",
+   "petroleum-based materials"
+  ],
   "product": "personal care and household essentials",
   "annual_spend": 88000000,
   "on_time_delivery": 97.3,
   "fill_rate": 98.4,
   "internal_cost_delta": 0.5,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 46,
+  "top_items": [
+   "K-1001 \u00b7 Huggies diapers, size 4, club pack",
+   "K-1002 \u00b7 Kleenex facial tissue, 8-pack",
+   "K-1003 \u00b7 Cottonelle toilet paper, 24 mega rolls"
+  ]
  },
  {
   "category": "Personal Care & Household",
   "name": "Kenvue",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "contract manufacturers",
-   "active pharmaceutical ingredients"
-  ],
   "brands": [
-   "Kenvue",
    "Neutrogena",
    "Listerine",
    "Tylenol",
@@ -204,203 +253,255 @@
    "Aveeno",
    "Johnson's"
   ],
+  "upstream": [
+   "contract manufacturers",
+   "active pharmaceutical ingredients"
+  ],
   "product": "personal care and household essentials",
   "annual_spend": 76000000,
   "on_time_delivery": 96.8,
   "fill_rate": 98.0,
   "internal_cost_delta": 0.7,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 38,
+  "top_items": [
+   "K-1001 \u00b7 Tylenol Extra Strength, 100 caplets",
+   "K-1002 \u00b7 Neutrogena face wash, twin pack",
+   "K-1003 \u00b7 Listerine mouthwash, 1L"
+  ]
  },
  {
   "category": "Personal Care & Household",
   "name": "Procter & Gamble",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "pulp",
-   "resins and packaging",
-   "chemicals"
-  ],
   "brands": [
-   "Procter & Gamble",
-   "P&G",
    "Pampers",
    "Tide",
    "Gillette",
    "Olay",
    "Charmin"
   ],
+  "upstream": [
+   "pulp",
+   "resins and packaging",
+   "chemicals"
+  ],
   "product": "personal care and household essentials",
   "annual_spend": 142000000,
   "on_time_delivery": 98.1,
   "fill_rate": 99.0,
   "internal_cost_delta": 0.6,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 64,
+  "top_items": [
+   "PG-1001 \u00b7 Tide liquid detergent, 146 oz",
+   "PG-1002 \u00b7 Pampers Swaddlers, size 2",
+   "PG-1003 \u00b7 Charmin Ultra Soft, 18 mega rolls"
+  ]
  },
  {
   "category": "Personal Care & Household",
   "name": "Edgewell",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "contract manufacturers",
-   "packaging"
-  ],
   "brands": [
-   "Edgewell",
    "Banana Boat",
    "Schick",
    "Hawaiian Tropic",
    "Playtex"
+  ],
+  "upstream": [
+   "contract manufacturers",
+   "packaging"
   ],
   "product": "personal care and household essentials",
   "annual_spend": 22000000,
   "on_time_delivery": 95.2,
   "fill_rate": 96.7,
   "internal_cost_delta": 0.4,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 17,
+  "top_items": [
+   "E-1001 \u00b7 Banana Boat sunscreen SPF 50, twin pack",
+   "E-1002 \u00b7 Schick Hydro 5 razor refills",
+   "E-1003 \u00b7 Playtex Sport tampons, 36 ct"
+  ]
  },
  {
   "category": "Toys",
   "name": "Mattel",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "own and contract factories in Asia and Mexico",
-   "plastics and resin"
-  ],
   "brands": [
-   "Mattel",
    "Barbie",
    "Hot Wheels",
    "Fisher-Price"
+  ],
+  "upstream": [
+   "own and contract factories in Asia and Mexico",
+   "plastics and resin"
   ],
   "product": "toys and games",
   "annual_spend": 55000000,
   "on_time_delivery": 95.9,
   "fill_rate": 96.8,
   "internal_cost_delta": 0.9,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 52,
+  "top_items": [
+   "M-1001 \u00b7 Barbie Dreamhouse",
+   "M-1002 \u00b7 Hot Wheels track set",
+   "M-1003 \u00b7 Fisher-Price baby activity gym"
+  ]
  },
  {
   "category": "Toys",
   "name": "Hasbro",
   "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
-  "upstream": [
-   "contract factories in China and Southeast Asia",
-   "plastics and paperboard"
-  ],
   "brands": [
-   "Hasbro",
    "Monopoly",
    "Nerf",
    "Play-Doh"
+  ],
+  "upstream": [
+   "contract factories in China and Southeast Asia",
+   "plastics and paperboard"
   ],
   "product": "toys and games",
   "annual_spend": 47000000,
   "on_time_delivery": 95.6,
   "fill_rate": 96.1,
   "internal_cost_delta": 1.0,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 41,
+  "top_items": [
+   "H-1001 \u00b7 Monopoly Classic board game",
+   "H-1002 \u00b7 Nerf Elite blaster",
+   "H-1003 \u00b7 Play-Doh 10-pack"
+  ]
  },
  {
   "category": "Toys",
   "name": "Spin Master",
   "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "brands": [
+   "Paw Patrol"
+  ],
   "upstream": [
    "contract factories in Asia",
    "plastics and electronics"
-  ],
-  "brands": [
-   "Spin Master",
-   "Paw Patrol"
   ],
   "product": "toys and games",
   "annual_spend": 19000000,
   "on_time_delivery": 95.1,
   "fill_rate": 96.9,
   "internal_cost_delta": 0.7,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 23,
+  "top_items": [
+   "SM-1001 \u00b7 PAW Patrol Lookout Tower playset",
+   "SM-1002 \u00b7 Hatchimals mystery egg",
+   "SM-1003 \u00b7 Kinetic Sand set"
+  ]
  },
  {
   "category": "Toys",
   "name": "JAKKS Pacific",
   "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "brands": [
+   "JAKKS"
+  ],
   "upstream": [
    "contract factories in China",
    "plastics"
-  ],
-  "brands": [
-   "JAKKS"
   ],
   "product": "toys and games",
   "annual_spend": 9000000,
   "on_time_delivery": 92.8,
   "fill_rate": 95.2,
   "internal_cost_delta": 0.5,
-  "third_party_rating": "Medium"
+  "third_party_rating": "Medium",
+  "sku_count": 12,
+  "top_items": [
+   "JP-1001 \u00b7 Licensed character dress-up set",
+   "JP-1002 \u00b7 Licensed large-scale doll"
+  ]
  },
  {
   "category": "Apparel & Footwear",
   "name": "Nike",
   "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
-  "upstream": [
-   "contract factories in Vietnam, Indonesia and China",
-   "textiles and rubber"
-  ],
   "brands": [
    "Nike",
    "Jordan",
    "Converse"
+  ],
+  "upstream": [
+   "contract factories in Vietnam, Indonesia and China",
+   "textiles and rubber"
   ],
   "product": "athletic footwear and apparel",
   "annual_spend": 96000000,
   "on_time_delivery": 95.7,
   "fill_rate": 97.3,
   "internal_cost_delta": 0.8,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 88,
+  "top_items": [
+   "N-1001 \u00b7 Nike men's running shoe",
+   "N-1002 \u00b7 Nike Dri-FIT training tee",
+   "N-1003 \u00b7 Jordan youth basketball shoe"
+  ]
  },
  {
   "category": "Apparel & Footwear",
   "name": "Adidas",
   "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "brands": [
+   "Adidas"
+  ],
   "upstream": [
    "contract factories in Vietnam, Indonesia and China",
    "textiles"
-  ],
-  "brands": [
-   "Adidas"
   ],
   "product": "athletic footwear and apparel",
   "annual_spend": 51000000,
   "on_time_delivery": 95.9,
   "fill_rate": 96.8,
   "internal_cost_delta": 1.0,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 57,
+  "top_items": [
+   "A-1001 \u00b7 Adidas men's running shoe",
+   "A-1002 \u00b7 Adidas track jacket",
+   "A-1003 \u00b7 Adidas kids' soccer cleat"
+  ]
  },
  {
   "category": "Apparel & Footwear",
   "name": "Under Armour",
   "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "brands": [
+   "Under Armour"
+  ],
   "upstream": [
    "contract factories in Asia",
    "synthetic textiles"
-  ],
-  "brands": [
-   "Under Armour"
   ],
   "product": "athletic footwear and apparel",
   "annual_spend": 23000000,
   "on_time_delivery": 93.4,
   "fill_rate": 95.5,
   "internal_cost_delta": 0.8,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 34,
+  "top_items": [
+   "UA-1001 \u00b7 Under Armour tech tee",
+   "UA-1002 \u00b7 Under Armour training shoe"
+  ]
  },
  {
   "category": "Apparel & Footwear",
   "name": "Gildan",
   "relationship": "Vertically integrated manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "cotton and yarn",
-   "own textile and sewing plants in Central America"
-  ],
   "brands": [
    "Gildan",
    "Hanes",
@@ -408,100 +509,130 @@
    "Comfort Colors",
    "American Apparel"
   ],
+  "upstream": [
+   "cotton and yarn",
+   "own textile and sewing plants in Central America"
+  ],
   "product": "athletic footwear and apparel",
   "annual_spend": 34000000,
   "on_time_delivery": 96.0,
   "fill_rate": 97.9,
   "internal_cost_delta": 0.6,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 29,
+  "top_items": [
+   "G-1001 \u00b7 Hanes men's crew tee, 6-pack",
+   "G-1002 \u00b7 Gildan heavy cotton tee",
+   "G-1003 \u00b7 Hanes women's underwear, 6-pack"
+  ]
  },
  {
   "category": "Grocery & Packaged Goods",
   "name": "Hershey",
   "relationship": "Manufacturer \u00b7 direct supplier",
+  "brands": [
+   "Hershey's",
+   "Reese's"
+  ],
   "upstream": [
    "cocoa (West Africa)",
    "sugar",
    "dairy"
-  ],
-  "brands": [
-   "Hershey",
-   "Reese's"
   ],
   "product": "chocolate confectionery",
   "annual_spend": 63000000,
   "on_time_delivery": 97.6,
   "fill_rate": 98.7,
   "internal_cost_delta": 0.3,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 36,
+  "top_items": [
+   "H-1001 \u00b7 Hershey's milk chocolate bar, 6-pack",
+   "H-1002 \u00b7 Reese's peanut butter cups, share size",
+   "H-1003 \u00b7 Halloween assorted miniatures bag"
+  ]
  },
  {
   "category": "Grocery & Packaged Goods",
   "name": "Mondelez",
   "relationship": "Manufacturer \u00b7 direct supplier",
-  "upstream": [
-   "cocoa (West Africa)",
-   "sugar",
-   "wheat"
-  ],
   "brands": [
-   "Mondelez",
    "Cadbury",
    "Oreo",
    "Milka",
    "Toblerone"
+  ],
+  "upstream": [
+   "cocoa (West Africa)",
+   "sugar",
+   "wheat"
   ],
   "product": "chocolate confectionery",
   "annual_spend": 48000000,
   "on_time_delivery": 97.0,
   "fill_rate": 98.2,
   "internal_cost_delta": 0.4,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 27,
+  "top_items": [
+   "M-1001 \u00b7 Cadbury Dairy Milk bar",
+   "M-1002 \u00b7 Toblerone 100g bar",
+   "M-1003 \u00b7 Oreo family size pack"
+  ]
  },
  {
   "category": "Grocery & Packaged Goods",
   "name": "Mars",
   "relationship": "Manufacturer \u00b7 direct supplier",
+  "brands": [
+   "M&M's",
+   "Snickers",
+   "Twix"
+  ],
   "upstream": [
    "cocoa (West Africa)",
    "sugar",
    "peanuts"
-  ],
-  "brands": [
-   "Mars",
-   "M&M's",
-   "Snickers",
-   "Twix",
-   "Kellanova"
   ],
   "product": "chocolate confectionery",
   "annual_spend": 57000000,
   "on_time_delivery": 96.9,
   "fill_rate": 98.3,
   "internal_cost_delta": 0.2,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 31,
+  "top_items": [
+   "M-1001 \u00b7 M&M's peanut, sharing size",
+   "M-1002 \u00b7 Snickers 10-pack",
+   "M-1003 \u00b7 Twix fun size, party bag"
+  ]
  },
  {
   "category": "Grocery & Packaged Goods",
   "name": "Ferrero",
   "relationship": "Manufacturer \u00b7 direct supplier",
+  "brands": [
+   "Nutella",
+   "Kinder",
+   "Ferrero Rocher",
+   "Butterfinger"
+  ],
   "upstream": [
    "cocoa",
    "hazelnuts",
    "sugar"
-  ],
-  "brands": [
-   "Ferrero",
-   "Ferrara",
-   "Nutella",
-   "Kinder",
-   "Butterfinger"
   ],
   "product": "chocolate confectionery",
   "annual_spend": 29000000,
   "on_time_delivery": 96.1,
   "fill_rate": 97.6,
   "internal_cost_delta": 0.5,
-  "third_party_rating": "Low"
+  "third_party_rating": "Low",
+  "sku_count": 18,
+  "top_items": [
+   "F-1001 \u00b7 Ferrero Rocher 24-piece box",
+   "F-1002 \u00b7 Nutella 26.5 oz jar",
+   "F-1003 \u00b7 Kinder Joy 3-pack"
+  ]
  }
 ]
