@@ -50,8 +50,8 @@ Retailer ← direct supplier ← distributor / importer ← manufacturer ← par
 ## Caching
 
 - Each request and its response are saved as JSON in `cache/<call type>/`, named by a hash of the request.
-- The same request returns the cached result for free, with a CACHED label.
-- If a live call fails, the app falls back to the cache.
+- The same request within 6 hours returns the cached result for free, with a CACHED label. After that it is fetched live again.
+- If a live call fails, the app falls back to the cache, however old.
 - The app counts Snapshot calls against the 100-request trial.
 
 ## Files

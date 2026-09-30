@@ -60,7 +60,7 @@ On Streamlit Community Cloud, put the same values in the app's **Secrets**.
 
 **Cost notes:**
 
-- Results are saved in `cache/`, which is gitignored. A fresh clone starts with an empty cache, so the first run of each step calls Exa and costs money.
+- Results are saved in `cache/`, which is gitignored, and reused for 6 hours. A fresh clone starts with an empty cache, so the first run of each step calls Exa and costs money.
 - The **Run live** toggle skips the cache.
 - Snapshot allows 100 trial requests and covers the last 5 months only.
 - Step 8 creates a real daily Monitor. It keeps running, and billing, until you delete it with `exa.monitors.delete(id)`.
