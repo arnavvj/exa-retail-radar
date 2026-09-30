@@ -1,0 +1,507 @@
+[
+ {
+  "category": "Home Appliances",
+  "name": "Whirlpool",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "stainless steel",
+   "electronic controls",
+   "pumps and motors"
+  ],
+  "brands": [
+   "Whirlpool",
+   "KitchenAid",
+   "Maytag"
+  ],
+  "product": "premium dishwashers",
+  "annual_spend": 42000000,
+  "on_time_delivery": 96.2,
+  "fill_rate": 98.1,
+  "internal_cost_delta": 0.4,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Home Appliances",
+  "name": "GE Appliances",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "Haier (parent company)",
+   "stainless steel",
+   "electronic controls"
+  ],
+  "brands": [
+   "GE",
+   "Haier",
+   "Caf\u00e9",
+   "Monogram"
+  ],
+  "product": "premium dishwashers",
+  "annual_spend": 31000000,
+  "on_time_delivery": 94.8,
+  "fill_rate": 97.4,
+  "internal_cost_delta": 0.2,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Home Appliances",
+  "name": "LG",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "overseas assembly plants",
+   "semiconductors",
+   "stainless steel"
+  ],
+  "brands": [
+   "LG"
+  ],
+  "product": "premium dishwashers",
+  "annual_spend": 24000000,
+  "on_time_delivery": 95.5,
+  "fill_rate": 96.9,
+  "internal_cost_delta": 0.6,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Home Appliances",
+  "name": "Bosch",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "BSH Home Appliances plants",
+   "stainless steel",
+   "electronic controls"
+  ],
+  "brands": [
+   "Bosch",
+   "BSH",
+   "Thermador",
+   "Gaggenau"
+  ],
+  "product": "premium dishwashers",
+  "annual_spend": 18000000,
+  "on_time_delivery": 97.1,
+  "fill_rate": 98.6,
+  "internal_cost_delta": 0.3,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Consumer Electronics",
+  "name": "Dell",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "DRAM and NAND memory",
+   "CPUs",
+   "contract assemblers in Asia"
+  ],
+  "brands": [
+   "Dell",
+   "Alienware"
+  ],
+  "product": "laptops",
+  "annual_spend": 64000000,
+  "on_time_delivery": 95.9,
+  "fill_rate": 97.2,
+  "internal_cost_delta": 1.1,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Consumer Electronics",
+  "name": "HP",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "DRAM and NAND memory",
+   "CPUs",
+   "contract assemblers in Asia"
+  ],
+  "brands": [
+   "HP",
+   "OMEN",
+   "HyperX"
+  ],
+  "product": "laptops",
+  "annual_spend": 71000000,
+  "on_time_delivery": 96.4,
+  "fill_rate": 97.8,
+  "internal_cost_delta": 0.9,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Consumer Electronics",
+  "name": "Lenovo",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "DRAM and NAND memory",
+   "CPUs",
+   "own and contract factories"
+  ],
+  "brands": [
+   "Lenovo",
+   "ThinkPad",
+   "Legion",
+   "Motorola"
+  ],
+  "product": "laptops",
+  "annual_spend": 58000000,
+  "on_time_delivery": 94.1,
+  "fill_rate": 96.5,
+  "internal_cost_delta": 1.3,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Consumer Electronics",
+  "name": "TD SYNNEX",
+  "relationship": "Distributor \u00b7 direct supplier",
+  "upstream": [
+   "laptop manufacturers (HP, Lenovo, Acer, ASUS)",
+   "DRAM and NAND memory"
+  ],
+  "brands": [
+   "TD SYNNEX"
+  ],
+  "product": "laptops",
+  "annual_spend": 39000000,
+  "on_time_delivery": 97.4,
+  "fill_rate": 97.9,
+  "internal_cost_delta": 0.7,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Personal Care & Household",
+  "name": "Kimberly-Clark",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "pulp and nonwovens",
+   "petroleum-based materials"
+  ],
+  "brands": [
+   "Kimberly-Clark",
+   "Huggies",
+   "Kleenex",
+   "Cottonelle",
+   "Scott",
+   "Kotex"
+  ],
+  "product": "personal care and household essentials",
+  "annual_spend": 88000000,
+  "on_time_delivery": 97.3,
+  "fill_rate": 98.4,
+  "internal_cost_delta": 0.5,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Personal Care & Household",
+  "name": "Kenvue",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "contract manufacturers",
+   "active pharmaceutical ingredients"
+  ],
+  "brands": [
+   "Kenvue",
+   "Neutrogena",
+   "Listerine",
+   "Tylenol",
+   "Band-Aid",
+   "Aveeno",
+   "Johnson's"
+  ],
+  "product": "personal care and household essentials",
+  "annual_spend": 76000000,
+  "on_time_delivery": 96.8,
+  "fill_rate": 98.0,
+  "internal_cost_delta": 0.7,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Personal Care & Household",
+  "name": "Procter & Gamble",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "pulp",
+   "resins and packaging",
+   "chemicals"
+  ],
+  "brands": [
+   "Procter & Gamble",
+   "P&G",
+   "Pampers",
+   "Tide",
+   "Gillette",
+   "Olay",
+   "Charmin"
+  ],
+  "product": "personal care and household essentials",
+  "annual_spend": 142000000,
+  "on_time_delivery": 98.1,
+  "fill_rate": 99.0,
+  "internal_cost_delta": 0.6,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Personal Care & Household",
+  "name": "Edgewell",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "contract manufacturers",
+   "packaging"
+  ],
+  "brands": [
+   "Edgewell",
+   "Banana Boat",
+   "Schick",
+   "Hawaiian Tropic",
+   "Playtex"
+  ],
+  "product": "personal care and household essentials",
+  "annual_spend": 22000000,
+  "on_time_delivery": 95.2,
+  "fill_rate": 96.7,
+  "internal_cost_delta": 0.4,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Toys",
+  "name": "Mattel",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "own and contract factories in Asia and Mexico",
+   "plastics and resin"
+  ],
+  "brands": [
+   "Mattel",
+   "Barbie",
+   "Hot Wheels",
+   "Fisher-Price"
+  ],
+  "product": "toys and games",
+  "annual_spend": 55000000,
+  "on_time_delivery": 95.9,
+  "fill_rate": 96.8,
+  "internal_cost_delta": 0.9,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Toys",
+  "name": "Hasbro",
+  "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "upstream": [
+   "contract factories in China and Southeast Asia",
+   "plastics and paperboard"
+  ],
+  "brands": [
+   "Hasbro",
+   "Monopoly",
+   "Nerf",
+   "Play-Doh"
+  ],
+  "product": "toys and games",
+  "annual_spend": 47000000,
+  "on_time_delivery": 95.6,
+  "fill_rate": 96.1,
+  "internal_cost_delta": 1.0,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Toys",
+  "name": "Spin Master",
+  "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "upstream": [
+   "contract factories in Asia",
+   "plastics and electronics"
+  ],
+  "brands": [
+   "Spin Master",
+   "Paw Patrol"
+  ],
+  "product": "toys and games",
+  "annual_spend": 19000000,
+  "on_time_delivery": 95.1,
+  "fill_rate": 96.9,
+  "internal_cost_delta": 0.7,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Toys",
+  "name": "JAKKS Pacific",
+  "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "upstream": [
+   "contract factories in China",
+   "plastics"
+  ],
+  "brands": [
+   "JAKKS"
+  ],
+  "product": "toys and games",
+  "annual_spend": 9000000,
+  "on_time_delivery": 92.8,
+  "fill_rate": 95.2,
+  "internal_cost_delta": 0.5,
+  "third_party_rating": "Medium"
+ },
+ {
+  "category": "Apparel & Footwear",
+  "name": "Nike",
+  "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "upstream": [
+   "contract factories in Vietnam, Indonesia and China",
+   "textiles and rubber"
+  ],
+  "brands": [
+   "Nike",
+   "Jordan",
+   "Converse"
+  ],
+  "product": "athletic footwear and apparel",
+  "annual_spend": 96000000,
+  "on_time_delivery": 95.7,
+  "fill_rate": 97.3,
+  "internal_cost_delta": 0.8,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Apparel & Footwear",
+  "name": "Adidas",
+  "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "upstream": [
+   "contract factories in Vietnam, Indonesia and China",
+   "textiles"
+  ],
+  "brands": [
+   "Adidas"
+  ],
+  "product": "athletic footwear and apparel",
+  "annual_spend": 51000000,
+  "on_time_delivery": 95.9,
+  "fill_rate": 96.8,
+  "internal_cost_delta": 1.0,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Apparel & Footwear",
+  "name": "Under Armour",
+  "relationship": "Brand owner, contract-manufactured \u00b7 direct supplier",
+  "upstream": [
+   "contract factories in Asia",
+   "synthetic textiles"
+  ],
+  "brands": [
+   "Under Armour"
+  ],
+  "product": "athletic footwear and apparel",
+  "annual_spend": 23000000,
+  "on_time_delivery": 93.4,
+  "fill_rate": 95.5,
+  "internal_cost_delta": 0.8,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Apparel & Footwear",
+  "name": "Gildan",
+  "relationship": "Vertically integrated manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "cotton and yarn",
+   "own textile and sewing plants in Central America"
+  ],
+  "brands": [
+   "Gildan",
+   "Hanes",
+   "Bali",
+   "Comfort Colors",
+   "American Apparel"
+  ],
+  "product": "athletic footwear and apparel",
+  "annual_spend": 34000000,
+  "on_time_delivery": 96.0,
+  "fill_rate": 97.9,
+  "internal_cost_delta": 0.6,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Grocery & Packaged Goods",
+  "name": "Hershey",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "cocoa (West Africa)",
+   "sugar",
+   "dairy"
+  ],
+  "brands": [
+   "Hershey",
+   "Reese's"
+  ],
+  "product": "chocolate confectionery",
+  "annual_spend": 63000000,
+  "on_time_delivery": 97.6,
+  "fill_rate": 98.7,
+  "internal_cost_delta": 0.3,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Grocery & Packaged Goods",
+  "name": "Mondelez",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "cocoa (West Africa)",
+   "sugar",
+   "wheat"
+  ],
+  "brands": [
+   "Mondelez",
+   "Cadbury",
+   "Oreo",
+   "Milka",
+   "Toblerone"
+  ],
+  "product": "chocolate confectionery",
+  "annual_spend": 48000000,
+  "on_time_delivery": 97.0,
+  "fill_rate": 98.2,
+  "internal_cost_delta": 0.4,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Grocery & Packaged Goods",
+  "name": "Mars",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "cocoa (West Africa)",
+   "sugar",
+   "peanuts"
+  ],
+  "brands": [
+   "Mars",
+   "M&M's",
+   "Snickers",
+   "Twix",
+   "Kellanova"
+  ],
+  "product": "chocolate confectionery",
+  "annual_spend": 57000000,
+  "on_time_delivery": 96.9,
+  "fill_rate": 98.3,
+  "internal_cost_delta": 0.2,
+  "third_party_rating": "Low"
+ },
+ {
+  "category": "Grocery & Packaged Goods",
+  "name": "Ferrero",
+  "relationship": "Manufacturer \u00b7 direct supplier",
+  "upstream": [
+   "cocoa",
+   "hazelnuts",
+   "sugar"
+  ],
+  "brands": [
+   "Ferrero",
+   "Ferrara",
+   "Nutella",
+   "Kinder",
+   "Butterfinger"
+  ],
+  "product": "chocolate confectionery",
+  "annual_spend": 29000000,
+  "on_time_delivery": 96.1,
+  "fill_rate": 97.6,
+  "internal_cost_delta": 0.5,
+  "third_party_rating": "Low"
+ }
+]
