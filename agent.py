@@ -19,6 +19,7 @@ SOURCE_RULES = (
 LAYERS = ["Direct supplier", "Manufacturer", "Distributor / logistics", "Upstream component / material",
           "Industry-wide"]
 ROLES = ["Manufacturer", "Distributor", "Wholesaler", "Importer", "Vertically Integrated Supplier", "Other"]
+SEARCH_TYPES = ["instant", "fast", "auto", "deep-lite", "deep", "deep-reasoning"]
 
 
 def string(nullable=False):
@@ -79,7 +80,7 @@ def risk_query(supplier, product, focus):
 
 
 def risk_rules(supplier, product):
-    p = supplier_profile(supplier) or {"relationship": "direct supplier, role unknown", "upstream": ["unknown"]}
+    p = supplier_profile(supplier)
     return (f"We are a large North American retailer. {supplier} is our {p['relationship']} of {product}; "
             f"known upstream dependencies: {', '.join(p['upstream'])}. Look for signals at every supply-chain "
             "layer: the direct supplier, manufacturers, distributors and logistics, upstream components and "
@@ -88,9 +89,13 @@ def risk_rules(supplier, product):
             + SOURCE_RULES)
 
 
+def risk_search(supplier, product, focus, live, **kwargs):
+    return ex.search(risk_query(supplier, product, focus), system_prompt=risk_rules(supplier, product), live=live,
+                     **kwargs)
+
+
 def investigate(supplier, product, focus, live=False):
-    return ex.search(risk_query(supplier, product, focus), system_prompt=risk_rules(supplier, product),
-                     output_schema=RISK_SCHEMA, live=live)
+    return risk_search(supplier, product, focus, live, output_schema=RISK_SCHEMA)
 
 
 def sweep(suppliers, focus, live=False):
@@ -100,14 +105,12 @@ def sweep(suppliers, focus, live=False):
 
 
 def validate(supplier, product, focus, as_of, live=False):
-    return ex.search(risk_query(supplier, product, focus), system_prompt=risk_rules(supplier, product),
-                     output_schema=RISK_SCHEMA, live=live,
-                     contents={"highlights": True, "snapshot_as_of": f"{as_of}T00:00:00Z"})
+    return risk_search(supplier, product, focus, live, output_schema=RISK_SCHEMA,
+                       contents={"highlights": True, "snapshot_as_of": f"{as_of}T00:00:00Z"})
 
 
 def since(supplier, product, focus, as_of, live=False):
-    return ex.search(risk_query(supplier, product, focus), system_prompt=risk_rules(supplier, product),
-                     start_published_date=f"{as_of}T00:00:00Z", live=live)
+    return risk_search(supplier, product, focus, live, start_published_date=f"{as_of}T00:00:00Z")
 
 
 def newer_results(since_res, inv, as_of):
@@ -117,15 +120,8 @@ def newer_results(since_res, inv, as_of):
     return sorted(merged.values(), key=lambda r: r["date"], reverse=True)
 
 
-def current_suppliers(supplier, category):
-    return list(dict.fromkeys([s["name"] for s in suppliers_in(category)] + [supplier]))
-
-
-SEARCH_TYPES = ["instant", "fast", "auto", "deep-lite", "deep", "deep-reasoning"]
-
-
-def discover(supplier, product, category, search_type="deep", live=False):
-    names = current_suppliers(supplier, category)
+def discover(product, category, search_type="deep", live=False):
+    names = [s["name"] for s in suppliers_in(category)]
     res = ex.search(f"companies that could become alternative direct suppliers of {product} "
                     "to large North American retailers",
                     type=search_type, category="company", output_schema=COMPANY_SCHEMA, live=live,
@@ -202,5 +198,3 @@ def split_vetting(run, names, product, live=False):
         out[name] = {"cand": cand, "run": run, "prefix": prefix,
                      "hl": ex.contents(urls[:4], query, live) if urls else None}
     return out
-
-
