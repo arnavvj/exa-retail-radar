@@ -1,0 +1,57 @@
+[
+ {
+  "category": "Home Appliances",
+  "name": "Price hike / tariff exposure",
+  "as_of": "2026-07-09",
+  "focus": "price increases, tariffs, plant or capacity changes and component or logistics disruptions",
+  "why_date": "The day Whirlpool's list-price increase took effect: was it already visible on the public web?",
+  "event": "Jul 9, 2026 \u00b7 Whirlpool list-price increase took effect"
+ },
+ {
+  "category": "Consumer Electronics",
+  "name": "Memory-chip shortage",
+  "as_of": "2026-06-26",
+  "focus": "memory chip shortage, price increases, allocation and supply constraints",
+  "why_date": "The day memory-chip costs were reported squeezing laptop pricing: what was already public?",
+  "event": "Jun 26, 2026 \u00b7 memory-chip costs squeeze laptop pricing"
+ },
+ {
+  "category": "Personal Care & Household",
+  "name": "Supplier M&A / restructuring",
+  "as_of": "2026-07-01",
+  "focus": "acquisition, restructuring, plant changes, recalls and supply changes",
+  "why_date": "The start of H2 2026, when the Kimberly-Clark and Kenvue deal close was expected.",
+  "event": "H2 2026 \u00b7 Kimberly-Clark\u2013Kenvue deal close expected"
+ },
+ {
+  "category": "Toys",
+  "name": "Holiday tariff pricing / China sourcing shift",
+  "as_of": "2026-08-04",
+  "focus": "tariff price increases, sourcing-country shifts, factory and holiday supply risks",
+  "why_date": "The day Mattel's Q2 results showed tariff costs hitting margins.",
+  "event": "Aug 4, 2026 \u00b7 Mattel Q2 shows tariff costs hitting margins"
+ },
+ {
+  "category": "Apparel & Footwear",
+  "name": "Tariff refunds / price changes",
+  "as_of": "2026-06-01",
+  "focus": "tariff refunds, price changes, sourcing-country shifts and factory disruptions",
+  "why_date": "The Feb 20 ruling is older than Snapshot's 5-month window, so the replay starts Jun 1 and covers the refund aftermath.",
+  "event": "Feb 20, 2026 \u00b7 Supreme Court struck down IEEPA tariffs"
+ },
+ {
+  "category": "Grocery & Packaged Goods",
+  "name": "Cocoa cost swing / negotiation leverage",
+  "as_of": "2026-09-01",
+  "focus": "cocoa cost swings, chocolate price changes and supply disruptions",
+  "why_date": "Early September, as Halloween candy pricing reached shelves after the cocoa price fall.",
+  "event": "Sep 2026 \u00b7 cocoa fell, chocolate prices stayed high"
+ },
+ {
+  "category": "Any",
+  "name": "Live today",
+  "as_of": null,
+  "focus": "price increases, tariffs, recalls, plant changes and supply disruptions",
+  "why_date": "Live mode: pick any date inside Snapshot's rolling 5-month window."
+ }
+]
