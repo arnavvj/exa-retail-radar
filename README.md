@@ -54,7 +54,7 @@ cp .env.example .env        # then fill it in
 | `APP_USER1` / `APP_PASS1` | yes | Login. Add more accounts as `APP_USER2`, `APP_PASS2`, and so on, up to 9. |
 | `OPENAI_API_KEY`, `OPENAI_MODEL` | for step 6 | Copilot (default model `gpt-5.6`) |
 | `EXA_AGENT_EFFORT` | no | Vetting depth. The default, `medium`, costs $0.10 per run. |
-| `EXA_MONITOR_WEBHOOK_URL` | no | Where the Monitor sends results. If this is empty, the app creates a free webhook.site URL. |
+| `EXA_MONITOR_WEBHOOK_URL` | no | Where the Monitor sends results. If this is empty, the app creates a free Svix Play URL. |
 
 On Streamlit Community Cloud, put the same values in the app's **Secrets**.
 
