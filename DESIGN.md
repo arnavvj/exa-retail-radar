@@ -32,6 +32,7 @@ Retailer ← direct supplier ← distributor / importer ← manufacturer ← par
 | Discover | `exa.search` | `category="company"`, `output_schema`, type selectable (default `deep`) |
 | Vet | `exa.agent.runs.create` | `input.data` (the chosen companies), `output_schema`, `effort`. The app polls until the run finishes. |
 | Evidence excerpts | `exa.get_contents` | `highlights` with a query, for each candidate |
+| Who to contact | `exa.search` | `category="people"`. Keeps only people whose current role is at the vetted company; shows the top 2. |
 | Copilot | `exa.openai.web_search` | Exa as an OpenAI tool. The model picks its own searches, at most 4 per question. |
 | Watch | `exa.monitors.create`, then `trigger` | Runs daily and posts to a webhook. The inbox checks the `Exa-Signature` (HMAC-SHA256). |
 
@@ -45,6 +46,7 @@ Retailer ← direct supplier ← distributor / importer ← manufacturer ← par
   - It answers sourcing questions only.
   - It treats search results as untrusted and cites URLs.
   - Questions are capped at 500 characters, and at 15 per session.
+- **Contacts:** public professional profiles only (name, title, location, LinkedIn). No emails or phone numbers.
 - **No automatic actions:** decision buttons only hand the case off to a team. They never buy or change anything.
 - **Access:** a login is required, and keys live only in `.env` or the Streamlit Secrets.
 

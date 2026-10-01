@@ -58,7 +58,8 @@ st.title("Supplier Risk & Discovery Radar")
 st.caption("External supply-chain intelligence for retail sourcing agents · *Which of our suppliers is becoming a "
            "risk, what is happening upstream, and who could we source from instead?*")
 st.markdown("**Detect** · Exa Search → **Trace upstream** · Exa Search → **Validate** · Exa Snapshot → "
-            "**Discover** · Exa Company Search → **Vet** · Exa Agent → **Watch** · Exa Monitors")
+            "**Discover** · Exa Company Search → **Vet** · Exa Agent → **Contact** · Exa People Search → "
+            "**Watch** · Exa Monitors")
 st.caption("Exa is not just the search box inside the agent. It is the external intelligence layer that lets the "
            "agent move from a supplier-risk signal to an actionable sourcing workflow.")
 
@@ -216,7 +217,9 @@ if picks:
     shown = [vetted[p["company_name"]] for p in picks if p["company_name"] in vetted]
     runs = list({v["run"]["data"]["id"]: v["run"] for v in shown}.values())
     ui.section("Vet the shortlist", *runs, *[v["hl"] for v in shown if v["hl"]],
-               note="Already-vetted companies are reused; only newly selected ones go to Exa Agent.")
+               *[v["people"] for v in shown if v.get("people")],
+               note="Exa Agent vets each company; Contents highlights pull evidence excerpts; people search finds "
+                    "current sales leaders to contact. Already-vetted companies are reused.")
     if todo and "vet_job" not in ss and st.button(
             f"🧪 Vet {len(todo)} {'new ' if shown else ''}candidate{'s' if len(todo) > 1 else ''} with Exa Agent",
             type="primary"):
@@ -247,10 +250,10 @@ if picks:
     if ss.get("vet_error"):
         ui.badge(ss.vet_error)
     if shown:
-        log("Vetted candidates as alternative direct suppliers (Exa Agent + highlights)")
+        log("Vetted candidates and found who to contact (Exa Agent + highlights + people search)")
         ui.badge(shown[0]["run"])
         for col, v in zip(st.columns(3), shown):
-            ui.vet_card(col, v["cand"], v["run"]["data"]["grounding"], v["prefix"], v["hl"])
+            ui.vet_card(col, v["cand"], v["run"]["data"]["grounding"], v["prefix"], v["hl"], v.get("people"))
 
 if shown:
     st.divider()

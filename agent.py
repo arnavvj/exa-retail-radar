@@ -211,5 +211,16 @@ def split_vetting(run, names, product, live=False):
         query = (f"{cand['company_name']} {product} supply capability: manufacturing, distribution, capacity, "
                  "retail customers and risks")
         out[name] = {"cand": cand, "run": run, "prefix": prefix,
-                     "hl": ex.contents(urls[:4], query, live) if urls else None}
+                     "hl": ex.contents(urls[:4], query, live) if urls else None,
+                     "people": contacts(name, product, live)}
     return out
+
+
+def contacts(company, product, live=False):
+    res = ex.search(f"sales, national accounts or retail partnerships leaders at {company} ({product})",
+                    category="people", live=live)
+    if res.get("data"):
+        res["people"] = [{**r["person"], "url": r["url"]} for r in res["data"]["results"]
+                         if r.get("person") and r["person"]["employer"]
+                         and first_word(r["person"]["employer"]) == first_word(company)][:2]
+    return res

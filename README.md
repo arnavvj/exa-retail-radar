@@ -23,7 +23,7 @@ Nobody has time to read the whole web.
 | 2. Investigate | One supplier's risks, split by supply-chain layer (the supplier, factories, logistics, raw materials) | the same Search result |
 | 3. Validate | The web replayed as of a past date ("could we have known?"), plus what has been published since | Snapshot, then Search filtered by date |
 | 4. Discover | Companies that could supply us instead | Search with `category="company"` |
-| 5. Vet | Deep research on up to 3 candidates: what is proven, what is likely, what still needs checking | Agent and Contents highlights |
+| 5. Vet | Deep research on up to 3 candidates: what is proven, what is likely, what still needs checking, and 2 sales leaders to contact at each | Agent, Contents highlights and people search |
 | 6. Ask | A follow-up question, answered by an OpenAI model that uses Exa as its search tool | Exa tool for OpenAI |
 | 7. Decide | A choice of next step. Nothing is bought or changed automatically. | none |
 | 8. Watch | A daily re-check of the supplier, with results pushed to a webhook | Monitors |
