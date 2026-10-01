@@ -169,7 +169,7 @@ VET_LISTS = [("⚠️ Material risks", "material_risks"), ("✅ Publicly demonst
              ("☎️ Validate with the supplier", "needs_supplier_validation")]
 
 
-def vet_card(col, c, grounding, p, highlights):
+def vet_card(col, c, grounding, p, highlights, people=None):
     refs = {}
     with col.container(border=True, height=760):
         st.markdown(f"#### {clean(c['company_name'])}\n:blue-badge[{c['supply_chain_role']}]")
@@ -186,6 +186,15 @@ def vet_card(col, c, grounding, p, highlights):
             st.markdown("**Evidence excerpts** · :blue-badge[Exa highlights]")
             for r, h in hits:
                 st.markdown(f"> {clean(h, 400)}  \n> — [{r['domain']}]({r['url']})")
+        if people:
+            st.markdown("**Who to contact** · :blue-badge[Exa people search]")
+            for x in people.get("people", []):
+                st.markdown(f"- [{clean(x['name'])}]({x['url']}) · {clean(x['title'])}  \n  {clean(x['location'])}")
+            if people.get("error"):
+                st.caption(f"People search failed: {clean(people['error'], 200)}")
+            elif not people.get("people"):
+                st.caption("No current contacts found in public profiles.")
+            st.caption("Public professional profiles. Verify the role before outreach.")
 
 
 def decision_table(cands):

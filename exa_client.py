@@ -61,8 +61,7 @@ def cost(r):
 
 def search(query, live=False, **kwargs):
     kwargs = {"type": "auto", "num_results": 8, "contents": {"highlights": True}, **kwargs}
-    op = ("snapshot" if "snapshot_as_of" in kwargs["contents"]
-          else "company" if kwargs.get("category") == "company" else "search")
+    op = "snapshot" if "snapshot_as_of" in kwargs["contents"] else kwargs.get("category") or "search"
 
     def run():
         r = client().search(query, **kwargs)
@@ -82,10 +81,17 @@ def contents(urls, query, live=False):
 
 
 def _result(r):
-    ent = next((e for e in r.entities or [] if e.type == "company"), None)
+    ents = {e.type: e.properties for e in r.entities or []}
     return {"title": r.title, "url": r.url, "domain": urlparse(r.url).netloc.removeprefix("www."),
             "date": (r.published_date or "")[:10], "highlights": r.highlights or [],
-            "company": _company(ent.properties) if ent else None}
+            "company": _company(ents["company"]) if "company" in ents else None,
+            "person": _person(ents["person"]) if "person" in ents else None}
+
+
+def _person(p):
+    now = next((w for w in p.work_history or [] if not (w.dates and w.dates.to_date)), None)
+    return {"name": p.name, "location": p.location, "title": now.title if now else None,
+            "employer": now.company.name if now and now.company else None}
 
 
 def _company(p):
