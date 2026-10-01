@@ -85,6 +85,12 @@ def risk_query(supplier, product, focus):
     return f"{supplier} and its supply chain: {focus} affecting {product}"
 
 
+def watch_query(company, supplier, product, focus):
+    if company == supplier:
+        return risk_query(supplier, product, focus)
+    return f"{company}: capacity, pricing, recalls, retail partnerships and supply disruptions affecting {product}"
+
+
 def risk_rules(supplier, product, today=None):
     p = supplier_profile(supplier)
     return (f"We are a large North American retailer. {supplier} is our {p['relationship']} of {product}; "
