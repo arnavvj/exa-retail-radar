@@ -107,8 +107,14 @@ def _grounding(rows):
              "citations": [{"url": c.url, "title": c.title} for c in g.citations]} for g in rows or []]
 
 
+def plain(x):
+    if isinstance(x, dict):
+        return plain(x["value"]) if "value" in x else {k: plain(v) for k, v in x.items()}
+    return [plain(v) for v in x] if isinstance(x, list) else x
+
+
 def _output(o):
-    return {"content": o.content, "grounding": _grounding(o.grounding)} if o else None
+    return {"content": plain(o.content), "grounding": _grounding(o.grounding)} if o else None
 
 
 def agent_cached(request):
@@ -130,7 +136,7 @@ def agent_poll(job):
     if run.status != "completed":
         msg = run.error.message if run.error else run.status
         return {"status": run.status, "source": "error", "error": f"Agent run {run.status}: {msg}"}
-    out = {"data": {"id": run.id, "structured": run.output.structured,
+    out = {"data": {"id": run.id, "structured": plain(run.output.structured),
                     "grounding": _grounding(run.output.grounding), "cost": cost(run)},
            "request": job["request"], "fetched_at": now(), "latency_s": round(time.time() - job["started"], 1)}
     cache.put("agent", job["request"], out)

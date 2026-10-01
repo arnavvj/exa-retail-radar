@@ -34,7 +34,7 @@ Retailer ← direct supplier ← distributor / importer ← manufacturer ← par
 | Evidence excerpts | `exa.get_contents` | `highlights` with a query, for each candidate |
 | Who to contact | `exa.search` | `category="people"`. Keeps only people whose current role is at the vetted company; shows the top 2. |
 | Copilot | `exa.openai.web_search` | Exa as an OpenAI tool. The model picks its own searches, at most 4 per question. |
-| Watch | `exa.monitors.create`, then `trigger` | Runs daily and posts to a webhook. The inbox checks the `Exa-Signature` (HMAC-SHA256). |
+| Watch | `exa.monitors.create`, then `trigger` | For the company picked in the dropdown: a vetted candidate (capacity, pricing, recalls, retail partnerships) or the current supplier (the risk query). Runs daily and posts to a webhook. The inbox checks the `Exa-Signature` (HMAC-SHA256). |
 
 ## Guardrails
 

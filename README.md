@@ -26,7 +26,7 @@ Nobody has time to read the whole web.
 | 5. Vet | Deep research on up to 3 candidates: what is proven, what is likely, what still needs checking, and 2 sales leaders to contact at each | Agent, Contents highlights and people search |
 | 6. Ask | A follow-up question, answered by an OpenAI model that uses Exa as its search tool | Exa tool for OpenAI |
 | 7. Decide | A choice of next step. Nothing is bought or changed automatically. | none |
-| 8. Watch | A daily re-check of the supplier, with results pushed to a webhook | Monitors |
+| 8. Watch | A daily re-check of a vetted candidate or the current supplier, with results pushed to a webhook | Monitors |
 
 Each Exa section has a **↗** button that shows the exact API call, in both Python and REST form.
 

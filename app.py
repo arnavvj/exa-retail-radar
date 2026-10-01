@@ -314,24 +314,31 @@ if shown:
 
 if shown and ss.get("decision") == "Keep Watching":
     st.divider()
-    webhook, query = inbox.endpoint(), agent.risk_query(supplier, product, focus)
-    mon = ex.saved_monitor(supplier)
-    ui.section("Keep watching", mon or {"request": ex.monitor_request(supplier, query, webhook)})
+    targets = [p["company_name"] for p in picks if p["company_name"] in vetted] + [supplier]
+    if ss.get("watch") not in targets:
+        ss.watch = targets[0]
+    watch = ss.watch
+    webhook, query = inbox.endpoint(), agent.watch_query(watch, supplier, product, focus)
+    mon = ex.saved_monitor(watch)
+    ui.section("Keep watching", mon or {"request": ex.monitor_request(watch, query, webhook)},
+               controls=lambda: st.selectbox("Company to watch", targets, key="watch", width=300,
+                                             format_func=lambda n: f"{n} (current supplier)" if n == supplier else n))
     if not webhook and st.button("Create demo webhook endpoint (Svix Play)", type="primary"):
         inbox.create_endpoint()
         st.rerun()
-    if not mon and webhook and st.button(f"Start daily Exa Monitor for {supplier}", type="primary"):
-        ex.create_monitor(supplier, query, webhook)
+    if not mon and webhook and st.button(f"Start daily Exa Monitor for {watch}", type="primary"):
+        ex.create_monitor(watch, query, webhook)
         st.rerun()
     if mon:
-        log(f"Monitoring {supplier} daily (Exa Monitors)")
+        log(f"Monitoring {watch} daily (Exa Monitors)")
         url = mon["request"]["python"]["params"]["webhook"]["url"]
         st.markdown(f"Monitoring: :green-badge[Active] `{mon['id']}` since {mon['created']} · delivers to `{url}`")
         st.markdown("**Webhook inbox** · what Exa POSTed to our endpoint, with the `Exa-Signature` checked "
                     "against the monitor's signing secret")
         if st.button("↻ Refresh inbox", type="primary"):
-            ss.inbox = inbox.deliveries(url, mon["id"])
-        for d in ss.get("inbox", []):
+            ss.setdefault("inbox", {})[mon["id"]] = inbox.deliveries(url, mon["id"])
+        received = ss.get("inbox", {}).get(mon["id"])
+        for d in received or []:
             ok = inbox.verify(d["raw"], d["signature"], mon.get("secret") or "")
             data = d["body"].get("data", {})
             output = data.get("output") or {}
@@ -343,7 +350,7 @@ if shown and ss.get("decision") == "Keep Watching":
                     st.markdown(f"- [{ui.clean(r.get('title'))}]({r.get('url')})")
                 if isinstance(output.get("content"), str):
                     st.caption(ui.clean(output["content"], 400))
-        if "inbox" in ss and not ss.inbox:
+        if received == []:
             st.caption("No deliveries yet. The first run usually lands within a minute or two of starting the monitor.")
     else:
         st.markdown("Monitoring: :gray-badge[Ready to configure]" if webhook else
