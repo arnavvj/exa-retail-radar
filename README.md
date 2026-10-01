@@ -66,3 +66,5 @@ On Streamlit Community Cloud, put the same values in the app's **Secrets**.
 - Step 8 creates a real daily Monitor. It keeps running, and billing, until you delete it with `exa.monitors.delete(id)`.
 
 For how the app is built, see [DESIGN.md](DESIGN.md).
+
+#### PRESENTATION [↗](https://docs.google.com/presentation/d/1sTm5gTODzAOsxuOJeb-zXX5PHs3_QrF5/edit?usp=sharing&ouid=100040357837908168144&rtpof=true&sd=true)
